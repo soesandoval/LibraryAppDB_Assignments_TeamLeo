@@ -1,6 +1,7 @@
 package com.library.steps;
 
 import com.library.utility.ConfigurationReader;
+import com.library.utility.DB_Util;
 import com.library.utility.Driver;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
@@ -21,6 +22,19 @@ public class Hooks {
 
 
     }
+
+    @Before("@db")
+    public void setupDB(){
+        System.out.println("Connecting to database...");
+        DB_Util.createConnection();
+    }
+
+    @After("@db")
+    public void closeDB(){
+        System.out.println("Closing DB connection...");
+        DB_Util.destroy();
+    }
+
 
     @After
     public void tearDown(Scenario scenario){
