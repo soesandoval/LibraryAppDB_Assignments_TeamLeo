@@ -26,7 +26,7 @@ public class Hooks {
     @Before("@db")
     public void setupDB(){
         System.out.println("Connecting to database...");
-        DB_Util.createConnection();
+        DB_Util.createConnection(ConfigurationReader.getProperty("library2.db.url"), ConfigurationReader.getProperty("library2.db.username"), ConfigurationReader.getProperty("library2.db.password"));
     }
 
     @After("@db")
